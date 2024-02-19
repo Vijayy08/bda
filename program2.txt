@@ -1,0 +1,21 @@
+mapper.py
+
+import sys
+for line in sys.stdin:
+fields = line.strip().split(",")
+if len(fields) != 3:
+continue
+salary = int(fields[2])
+print("{0}\t{1}".format(salary, 1))
+
+reducer.py
+
+import sys
+total_salary = 0
+employee_count = 0
+for line in sys.stdin:
+salary, count = line.strip().split('\t')
+total_salary += int(salary) * int(count)
+employee_count += int(count)
+average_salary = total_salary / employee_count
+print("Average salary: {0}".format(average_salary))

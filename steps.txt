@@ -1,0 +1,20 @@
+Step1. Type mapper.py and reducer.py using any editor
+$sudo Nano mapper.py
+
+Step 2. Create input.txt file
+$sudo nano input.txt
+
+Step 3. Run the map-reduce word count program on UNIX platform
+$cat input.txt | python3 mapper.py | sort | python3 reducer.py
+
+Step 4. Run the map-reduce word count program on Hadoop
+1. $sudo su hduser
+2. $ start-dfs.sh
+3. $start-yarn.sh
+4. $jps
+5. $hafs dfs -put /input.txt /
+6. hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming 3.3.4.jar -files
+./mapper.py,./reducer.py -mapper "python3 mapper.py" -reducer "python3 reducer.py" -input
+/5000-8.txt -output /0000009
+7. Observe the result in localhost:port_number
+8. Download outputfile and view it for wordcount
